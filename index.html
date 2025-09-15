@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fun Activities</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; margin:0; padding:0; display:flex; flex-direction:column; align-items:center;}
+    header { background: #4caf50; color: white; width:100%; text-align:center; padding:20px;}
+    main { width: 90%; max-width: 800px; margin-top:20px;}
+    .activity { background:white; padding:15px; margin:10px 0; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+    button { padding:8px 15px; margin-top:10px; cursor:pointer; }
+    input { padding:5px; width:60px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Fun Activities</h1>
+</header>
+
+<main>
+
+  <!-- Click Counter -->
+  <div class="activity" id="click-counter">
+    <h2>Click Counter</h2>
+    <p>Clicks: <span id="click-count">0</span></p>
+    <button onclick="increaseClick()">Click me!</button>
+  </div>
+
+  <!-- Number Guessing Game -->
+  <div class="activity" id="number-guess">
+    <h2>Number Challenge</h2>
+    <p>Guess a number between 1 and 10:</p>
+    <input type="number" id="guess-input" min="1" max="10">
+    <button onclick="checkGuess()">Submit</button>
+    <p id="guess-result"></p>
+  </div>
+
+</main>
+
+<script>
+  // Click Counter
+  let count = 0;
+  function increaseClick() {
+    count++;
+    document.getElementById('click-count').innerText = count;
+  }
+
+  // Number Guessing Game
+  const secretNumber = Math.floor(Math.random() * 10) + 1;
+  function checkGuess() {
+    const guess = parseInt(document.getElementById('guess-input').value);
+    const result = document.getElementById('guess-result');
+    if (!guess) {
+      result.innerText = "Please enter a number!";
+    } else if (guess === secretNumber) {
+      result.innerText = "🎉 Correct! You guessed it!";
+    } else if (guess < secretNumber) {
+      result.innerText = "Too low! Try again.";
+    } else {
+      result.innerText = "Too high! Try again.";
+    }
+  }
+</script>
+
+</body>
+</html>
